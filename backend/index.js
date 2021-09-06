@@ -9,12 +9,17 @@ app.use(cors());
 let counter = 0;
 
 app.get('/', (req,res) => {
-    res.send('Counter is: ' +Invalid status code: 1 counter);
+    res.send(`{ "counter": ${counter} }`);
 });
 
 app.post('/', (req, res) => {
     counter++;
     res.send('Counter was incremented');
+});
+
+app.post('/dec', (req, res) => {
+    counter--;
+    res.send('Counter was decremented');
 });
 
 app.listen('3000', () => {
