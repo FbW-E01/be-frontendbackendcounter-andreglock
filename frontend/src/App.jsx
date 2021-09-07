@@ -11,11 +11,17 @@ function App() {
       .catch(err => console.warn(err))
   }, [])
 
-  const handleGet = () => {
-    fetch('http://localhost:3000/')
-      .then(response => response.json())
-      .then(result => setCounter(`${result.counter}`))
-      .catch(err => console.warn(err));
+  const handleGet = async () => {
+    try {
+      const responseAwait = await fetch('http://localhost:3000/')
+      //  .then(response => response.json())
+      //  .then(result => setCounter(`${result.counter}`))
+      //  .catch(err => console.warn(err));
+      const data = await responseAwait.json()
+      setCounter(`${data.counter}`)
+    } catch (error) {
+      console.warn(error);
+    }
     console.log(counter);
   }
 
